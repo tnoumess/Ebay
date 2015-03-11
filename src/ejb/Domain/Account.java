@@ -5,6 +5,8 @@ package ejb.Domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id; 
 
 /**
@@ -19,10 +21,16 @@ public class Account {
 	
 	//private int Id;
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="AccountId")
+	protected long Id;
+	
 	@Column(name="Email")
 	private String email;
+	
 	@Column(name="Pwd")
 	private String pwd;
+	
 	@Column(name="Role")
 	private String Role;
 	

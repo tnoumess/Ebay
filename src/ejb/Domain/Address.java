@@ -38,7 +38,7 @@ public class Address {
 	  @Column(name="HOME_ZIP")
 	  protected String zipCode;
 	  
-	 /* @ManyToOne(fetch=FetchType.LAZY)
-	  //@JoinColumn("UserIds")
-	  protected User user;*/
+	  @JoinColumn(name="UserId", referencedColumnName="UserId")
+	  @ManyToOne(fetch=FetchType.LAZY)
+	  protected User user;
 	}

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
@@ -24,6 +25,10 @@ public class Billing {
 	
 	
 	@Id
+	@Column(name="BillingId")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	protected Long BillingId;
+	
 	@Column(name="Email")
 	protected String Email; 
 	
@@ -36,7 +41,8 @@ public class Billing {
     @Column(name="SecCode")
 	protected short SecCode;
     
-    @OneToOne (mappedBy="billing",optional=false)
+    @OneToOne //(mappedBy="billing",optional=false)
+    @JoinColumn(name="UserId")
     protected User user;
 
 }

@@ -7,9 +7,15 @@ import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author Thierry Edson Noumessi
@@ -18,122 +24,29 @@ import javax.persistence.OneToMany;
  * @3:28:22 AM
  * @Item.java
  */
+@Entity
 public class Item {
-/*
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ItemId")
 	protected Long ItemId;
 	
+	@Column(name="Title")
 	protected String Title;	
+	@OneToOne 
+	@JoinColumn(name="UserId", referencedColumnName="UserId")
+	@ManyToOne(fetch=FetchType.LAZY)
+	protected User user;
 	
-	protected Bidder bidder;
+	@Column(name="PostDate")
+	protected Date PostDate;
 	
-	protected Date Postdate;
-	
+	@Column(name="Price")
 	protected Double Price;
 	
-	//@OneToMany(mappedBy="item")
-	protected Set<Bid> bids;
-
-	/**
-	 * @return the itemId
-	 */
-	/*
-	@Id
-	@Column(name="ItemId")
-	public Long getItemId() {
-		return ItemId;
-	}
-
-	/**
-	 * @param itemId the itemId to set
-	 */
-	/*
-	public void setItemId(Long itemId) {
-		ItemId = itemId;
-	}
-
-	/**
-	 * @return the title
-	 */
-	/*
-	@Column(name="ItemId")
-	public String getTitle() {
-		return Title;
-	}
-
-	/**
-	 * @param title the title to set
-	 */
-	/*
-	public void setTitle(String title) {
-		Title = title;
-	}
-
-	/**
-	 * @return the bidder
-	 */
-	/*
-	@OneToMany
-	@JoinColumn(name="BidderId", referencedColumnName="BidderId")
-	public Bidder getBidder() {
-		return bidder;
-	}
-
-	/**
-	 * @param bidder the bidder to set
-	 */
-	/*
-	public void setBidder(Bidder bidder) {
-		this.bidder = bidder;
-	}
-
-	/**
-	 * @return the postdate
-	 */
-	/*
-	@Column(name="Postdate")
-	public Date getPostdate() {
-		return Postdate;
-	}
-
-	/**
-	 * @param postdate the postdate to set
-	 */
-	/*
-	public void setPostdate(Date postdate) {
-		Postdate = postdate;
-	}
-
-	/**
-	 * @return the price
-	 */
-	/*
-	@Column(name="Price")
-	public Double getPrice() {
-		return Price;
-	}
-
-	/**
-	 * @param price the price to set
-	 */
-	/*
-	public void setPrice(Double price) {
-		Price = price;
-	}
-
-	/**
-	 * @return the bids
-	 */
-	/*
-	public Set<Bid> getBids() {
-		return bids;
-	}
-
-	/**
-	 * @param bids the bids to set
-	 */
-	/*
-	public void setBids(Set<Bid> bids) {
-		this.bids = bids;
-	}
-	*/
+	@Column(name="Available")
+	protected boolean Available;
+	
+	
 }

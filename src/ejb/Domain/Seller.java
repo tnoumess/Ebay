@@ -3,6 +3,10 @@
  */
 package ejb.Domain;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 /**
  * @author Thierry Edson Noumessi
  *
@@ -10,6 +14,12 @@ package ejb.Domain;
  * @3:27:42 AM
  * @Seller.java
  */
-public class Seller {
+@Entity
+public class Seller extends User{
+	
+	@OneToOne 
+	@JoinColumn(name="ItemId")
+	protected Item item;
+	protected double startingprice;
 
 }
