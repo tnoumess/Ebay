@@ -51,4 +51,93 @@ import javax.persistence.OneToOne;
 	@JoinColumn(name="BillingId")
 	private Billing billing;
 
+	/**
+	 * @return the userId
+	 */
+	public long getUserId() {
+		return UserId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(long userId) {
+		UserId = userId;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return Email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return UserName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		UserName = userName;
+	}
+
+	/**
+	 * @return the shippingAddrs
+	 */
+	public Set<Address> getShippingAddrs() {
+		return ShippingAddrs;
+	}
+
+	/**
+	 * @param shippingAddrs the shippingAddrs to set
+	 */
+	public void setShippingAddrs(Set<Address> shippingAddrs) {
+		ShippingAddrs = shippingAddrs;
+	}
+
+	/**
+	 * @return the items
+	 */
+	public Set<Item> getItems() {
+		return items;
+	}
+
+	/**
+	 * @param items the items to set
+	 */
+	public void setItems(Set<Item> items) {
+		this.items = items;
+	}
+
+	/**
+	 * @return the billing
+	 */
+	public Billing getBilling() {
+		return billing;
+	}
+
+	/**
+	 * @param billing the billing to set
+	 */
+	public void setBilling(Billing billing) {
+		this.billing = billing;
+	}
+
+	public User() {
+		//super();
+		// TODO Auto-generated constructor stub
+	}
+
 }

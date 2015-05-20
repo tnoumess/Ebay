@@ -6,30 +6,27 @@ package ejb.Business;
 import java.util.List;
 
 import javax.ejb.Local;
-import javax.ejb.Remote;
 
 import ejb.Domain.Account;
+import ejb.Domain.User;
 
 /**
  * @author Thierry Edson Noumessi
  *
- * @date Mar 10, 2015
- * @10:31:14 PM
- * @AccountServiceLocal.java
+ * @date Mar 13, 2015
+ * @8:21:29 AM
+ * @UserServiceLocal.java
  */
 @Local
-public interface AccountServiceLocal {
-	
-	public void create(Account a);
+public interface UserServiceLocal {
+
+public void create(User a);
 	
 	public void delete(Object id);
 
 	public Account find(Object id);
 	
-	public List<?> findemail(Object id);
+	public List findemail(Object id);
 
 	public void update(Account a);
-	
-	public String getemail();
-
 }

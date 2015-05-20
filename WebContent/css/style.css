@@ -1,0 +1,92 @@
+.center {
+    text-align: center;
+}
+.errors {
+	background-color:#FFCCCC;
+	border:1px solid #CC0000;
+	margin-bottom:2px;
+}
+
+#loginContainer {
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 3px;
+    width: 820px;
+    margin: 0 auto;
+    background: #8b6914;
+}
+#loginContainer .container {
+    -moz-border-radius: 10px 10px 10px 10px;
+    background: #bfbfbf;
+    border: 4px solid #222222;
+    /*min-height: 470px;*/
+    padding: 50px 0 0 0;
+    -moz-box-shadow: 0 0 6px #000000;
+    -webkit-box-shadow: 0 0 6px #000000;
+    box-shadow: 0 0 6px #000000;
+    display: inline-block;
+}
+#loginContainer .loginLogo {
+	display: block;
+	margin: 0 auto;
+	padding-bottom: 20px;
+}
+
+#loginContainer .loginWrapper {
+	float: left;
+	margin: 10px;
+	width: 790px;
+	border: 1px dashed lightGray;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+#loginContainer .right-column, #loginContainer .left-column {
+    overflow: visible;
+    padding-left: 30px;
+    padding-top: 30px;
+    width: 350px;
+    display: inline-block;
+}
+#loginContainer .right-column h2, #loginContainer .left-column h2 {
+	font-size: 17px;
+	font-weight: normal;
+	margin: 0;
+	padding:  0 0 10px 0;
+}
+
+body.login-page {
+	background-color: #555555;
+}
+.right-column {
+    clear: right;
+    float: right;
+    overflow: hidden;
+    text-align: left;
+}
+.left-column {
+    clear: left;
+    float: left;
+    overflow: hidden;
+}
+
+#loginBox {
+    background-attachment: scroll;
+    background-color: transparent;
+    background-position: 0 0;
+    background-repeat: repeat;
+    float: left;
+    width: 100%;
+}
+
+#loginContainer clearfix {
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
+#loginFormList {
+	list-style: none outside none;
+	padding: 0;
+}

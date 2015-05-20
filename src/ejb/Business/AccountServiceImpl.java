@@ -3,13 +3,22 @@
  */
 package ejb.Business;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ejb.Dao.AccountDaoLocal;
 import ejb.Domain.Account;
+import ejb.interceptor.HelloInterceptor;
+import ejb.interceptor.Logger;
 
 /**
  * @author Thierry Edson Noumessi
@@ -18,21 +27,26 @@ import ejb.Domain.Account;
  * @10:31:40 PM
  * @AccountServiceImpl.java
  */
-@Stateful
-public class AccountServiceImpl implements AccountServiceLocal {
+@Named
+@SessionScoped
+//@Logger
+public class AccountServiceImpl implements AccountServiceLocal, Serializable {
 
 	@Inject 
 	private AccountDaoLocal adl;
 	
-	@PersistenceContext(unitName="Ebay")
-	private  EntityManager em;
+	String email;
 	/* (non-Javadoc)
 	 * @see ejb.Business.AccountServiceLocal#create(ejb.Domain.Account)
 	 */
 	@Override
+	//@Logger
+    @Interceptors(HelloInterceptor.class)
 	public void create(Account a) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("in it"+this);
+		email=a.getEmail();
+		adl.createdao(a);
 	}
 
 	/* (non-Javadoc)
@@ -62,4 +76,18 @@ public class AccountServiceImpl implements AccountServiceLocal {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see ejb.Business.AccountServiceLocal#findemail(java.lang.Object)
+	 */
+	@Override
+	public List findemail(Object id) {		// TODO Auto-generated method stub
+		
+		return adl.finddaobyEmail(id);
+	}
+	
+	@Override
+	public String getemail(){
+		
+		return email;
+	}
 }
