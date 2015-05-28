@@ -6,6 +6,7 @@ package ejb.Business;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.enterprise.context.SessionScoped;
@@ -35,7 +36,22 @@ public class AccountServiceImpl implements AccountServiceLocal, Serializable {
 	@Inject 
 	private AccountDaoLocal adl;
 	
-	String email;
+	
+	Account account;
+	/**
+	 * @return the account
+	 */
+	public Account getAccount() {
+		return account;
+	}
+
+	/**
+	 * @param account the account to set
+	 */
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
 	/* (non-Javadoc)
 	 * @see ejb.Business.AccountServiceLocal#create(ejb.Domain.Account)
 	 */
@@ -45,7 +61,7 @@ public class AccountServiceImpl implements AccountServiceLocal, Serializable {
 	public void create(Account a) {
 		// TODO Auto-generated method stub
 		System.out.println("in it"+this);
-		email=a.getEmail();
+		setAccount(a);
 		adl.createdao(a);
 	}
 
@@ -84,10 +100,16 @@ public class AccountServiceImpl implements AccountServiceLocal, Serializable {
 		
 		return adl.finddaobyEmail(id);
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see ejb.Business.AccountServiceLocal#logout()
+	 */
 	@Override
-	public String getemail(){
-		
-		return email;
+	@Remove
+	public void logout() {
+		// TODO Auto-generated method stub
+		setAccount(null);
 	}
+	
+	
 }

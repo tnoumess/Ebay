@@ -14,7 +14,9 @@
 	    
 	    <interceptor-ref name="token"/>
 	   <!-- <interceptor-ref name="basicStack"/>-->  
-       <interceptor-ref name="defaultStack" />
+       <interceptor-ref name="defaultStack" />  
+       
+         
        
 	   <interceptor-ref name="prepare"/>
        <interceptor-ref name="params"/>
@@ -24,6 +26,11 @@
        <interceptor-ref name="workflow">
              <param name="excludeMethods">input,back,cancel,browse</param>
        </interceptor-ref>
+       </interceptor-stack>
+        <interceptor name="CacheInterceptor"  class="ejb.interceptor.ClearCache"/>
+       <interceptor-stack name="myinterceptor">
+             <interceptor-ref name="defaultStack"/>
+             <interceptor-ref name="CacheInterceptor"/>
        </interceptor-stack>
        </interceptors>
         
@@ -36,7 +43,8 @@
 		
 		<action name="register" method="execute" class="action.Registration" >
 		    
-		     <interceptor-ref name="waitStack"/>		      	   
+		     <interceptor-ref name="waitStack"/>	
+		     <interceptor-ref name="myinterceptor"/> 	      	   
 		    <result name="success" >success.jsp</result> 
 		    <result name="input" >registration.jsp</result>
 		    <result name="invalid.token" type="redirect">registration.jsp</result> 
@@ -46,15 +54,23 @@
         <action name="save" method="save" class="action.Registration" >
         <interceptor-ref name="waitStack"/>
 		     <interceptor-ref name="defaultStack"/> 
+		     <interceptor-ref name="myinterceptor"/> 
 		     <result name="success">index.jsp</result> 
 		    <result name="input" >registration.jsp</result>
 		<result name="invalid.token" type="redirect">registration.jsp</result> 
+		</action>
 		
-		        </action>
+		<action name="kill" method="logout" class="action.Registration" >
+             <interceptor-ref name="myinterceptor"/> 
+		     <result name="success">login.jsp</result> 
+		    <result name="input" >index.jsp</result>
+		<result name="invalid.token" type="redirect">registration.jsp</result> 
+		</action>
 		        
 		        <action name="save2" method="save2" class="action.Registration" >
         <interceptor-ref name="waitStack"/>
 		     <interceptor-ref name="defaultStack"/> 
+		     <interceptor-ref name="myinterceptor"/> 
 		     <result name="success">failure.jsp</result> 
 		    <result name="input" >registration.jsp</result>
 		<result name="invalid.token" type="redirect">registration.jsp</result> 

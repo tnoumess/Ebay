@@ -9,9 +9,16 @@
 </head>
 <body>
 fail
-<s:property value="email2" escapeJavaScript="true"/>:
+<br>
+Client Id:<s:property value="client.getId()" escapeJavaScript="true"/><br>
+Client Email:<s:property value="client.getEmail()" escapeJavaScript="true"/><br>
+   
 <form action="save" method="post">
 <input type="submit" value="submit">
+<s:token /> 
+</form>
+<form action="kill" method="post">
+<input type="submit" value="logout">
 <s:token /> 
 </form>
 </body>

@@ -39,9 +39,8 @@ public class Registration extends ActionSupport implements ModelDriven<Account> 
 	private static final long serialVersionUID = -8930461193700155653L;
 	private Account account;
 	private User user;
+	private Account client;
 	
-	public String email;
-	public String email2;
 	
 	/* (non-Javadoc)
 	 * @see com.opensymphony.xwork2.ModelDriven#getModel()
@@ -57,9 +56,19 @@ public class Registration extends ActionSupport implements ModelDriven<Account> 
 	 @org.apache.struts2.interceptor.validation.SkipValidation
 	 public  String save()  
 	   {
-		 System.out.println("email is: "+asl.getemail());
-	     setEmail2(asl.getemail());
-		 if(asl.getemail()!=null)
+		 setClient(asl.getAccount());
+		 	     
+		 if(asl.getAccount()!=null)
+		 return "success";
+		 return "input";
+	   }
+	 @org.apache.struts2.interceptor.validation.SkipValidation
+	 public  String logout()  
+	   {
+		 		 
+	    asl.logout();
+	    System.out.println("account: "+asl.getAccount());
+		 if(asl.getAccount()==null)
 		 return "success";
 		 return "input";
 	   }
@@ -67,16 +76,16 @@ public class Registration extends ActionSupport implements ModelDriven<Account> 
 	 @org.apache.struts2.interceptor.validation.SkipValidation
 	 public  String save2()  
 	   {
-		 System.out.println("email is: "+asl.getemail());
-	     setEmail2(asl.getemail());
-		 if(asl.getemail()!=null)
+		 if(asl.getAccount()!=null){
+         setClient(asl.getAccount());		 
+	     System.out.println("email is this: "+getClient().getEmail());}
+		 if(asl.getAccount()!=null)
 		 return "success";
 		 return "input";
 	   }
 	 
 	 public  String execute() throws NoSuchAlgorithmException, InvalidKeySpecException, InterruptedException 
-	   {
-		  
+	   {		  
 		 user=new User();
 		 user.setEmail(account.getEmail().toString().trim());		 
 		 System.out.println("in execute");
@@ -89,12 +98,11 @@ public class Registration extends ActionSupport implements ModelDriven<Account> 
 	    * NB. the primary key in Account(AccountId) does not
 	    * Necessary matches the primary key in User(Id) 
 	    */
-	   
+	   setClient(account);
 		asl.create(account);
 		usl.create(user);
 	   lock.unlock();	
-	
-	       return "success";
+	   return "success";
 		 
 	   }
 	 
@@ -163,29 +171,18 @@ public class Registration extends ActionSupport implements ModelDriven<Account> 
 		account=new Account();
 		return account;
 	}
+	
 	/**
-	 * @return the email
+	 * @return the client
 	 */
-	public String getEmail() {
-		return email;
-	}
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	/**
-	 * @return the email
-	 */
-	public String getEmail2() {
-		return email2;
-	}
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail2(String email) {
-		this.email2 = email;
+	public Account getClient() {
+		return client;
 	}
 
+	/**
+	 * @param client the client to set
+	 */
+	public void setClient(Account client) {
+		this.client = client;
+	}
 }

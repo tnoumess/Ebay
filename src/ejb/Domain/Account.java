@@ -131,4 +131,12 @@ public class Account implements Serializable{
 		this.Role=role;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Account [Id=" + Id + ", Email=" + Email +  "]";
+	}
+
 }

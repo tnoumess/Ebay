@@ -30,6 +30,8 @@ public interface AccountServiceLocal {
 
 	public void update(Account a);
 	
-	public String getemail();
+	public void logout();
+	
+	public Account getAccount();
 
 }

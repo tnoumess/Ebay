@@ -8,7 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<s:property value="email2" escapeJavaScript="true"/>:
+<s:property value="email" escapeJavaScript="true"/>:
+<br>
+Client Id:<s:property value="client.getId()" escapeJavaScript="true"/><br>
+Client Email:<s:property value="client.getEmail()" escapeJavaScript="true"/><br>
 <form action="save2" method="post">
 <input type="submit" value="submit">
 <s:token /> 

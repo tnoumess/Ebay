@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-success <s:property value="email" escapeJavaScript="true"/>
-
+success <br>
+   Client Id:<s:property value="client.getId()" escapeJavaScript="true"/><br>
+   Client Email:<s:property value="client.getEmail()" escapeJavaScript="true"/><br>
+     
+<a href="failure.jsp">link</a>
 <form action="save" method="post">
 <input type="submit" value="submit">
 <s:token /> 
