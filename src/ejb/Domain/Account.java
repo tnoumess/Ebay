@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id; 
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedQueries;
 
 /**
  * @author Thierry Edson Noumessi
@@ -19,9 +20,15 @@ import javax.persistence.NamedQuery;
  * @3:26:53 AM
  * @Account.java
  */
+
+@NamedQueries({	
+@NamedQuery(
+		    name="finddao",
+		    query="SELECT a FROM Account a Where a.Email =:email"),
 @NamedQuery(
 	    name="findbyemail",
-	    query="SELECT a FROM Account a Where a.Email =:email")
+	    query="SELECT a FROM Account a Where a.Email =:email"),
+}) 
 @Entity
 public class Account implements Serializable{
 	
@@ -136,7 +143,7 @@ public class Account implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "Account [Id=" + Id + ", Email=" + Email +  "]";
+		return "Account [Id=" + Id + ", Email=" + Email +", Pwd=" + Pwd +  "]";
 	}
 
 }

@@ -4,6 +4,7 @@
 package ejb.Dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -11,6 +12,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import ejb.Domain.Account;
 
@@ -58,7 +60,12 @@ public class AccountDaoImpl implements AccountDaoLocal, Serializable{
 	@Override
 	public Account finddao(Object id) {
 		// TODO Auto-generated method stub
-		return null;
+		@SuppressWarnings("unchecked")
+		TypedQuery<Account> acc=em.createNamedQuery("finddao",Account.class)
+			    .setParameter("email", id);
+		
+		return acc.getResultList().size()==1 ?acc.getResultList().get(0):null;
+		
 	}
 
 	/* (non-Javadoc)
@@ -75,16 +82,17 @@ public class AccountDaoImpl implements AccountDaoLocal, Serializable{
 	 */
 	
 	@Override
-	public List finddaobyEmail(Object email) {
+	public List<String> finddaobyEmail(Object email) {
 		// TODO Auto-generated method stub
-		List account= em.createNamedQuery("findbyemail")
+		@SuppressWarnings("unchecked")
+		List<String> account= em.createNamedQuery("findbyemail")
 			    .setParameter("email", email)
 			    .getResultList();
 			
 		return account;
 	}
 
-
 	
+
 
 }

@@ -27,7 +27,7 @@ public interface AccountServiceLocal {
 	public Account find(Object id);
 	
 	public List<?> findemail(Object id);
-
+	
 	public void update(Account a);
 	
 	public void logout();

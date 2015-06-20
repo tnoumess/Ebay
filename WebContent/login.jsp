@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,25 +21,24 @@
 <div class="loginWrapper">
 			<div class="left-column">
 				<div id="loginBox">
-<form action="login" method="POST" name="login" >
+<s:form  action="login" method="POST" name="login" >
 <div id="loginFormFields" class="clearfix">
   <ul>    
       <li class="clearfix">
    
       <label for="email">Email:</label><br/>
-      <input type="text" name="user_id" id="user_id" size="25"/>
+      <input type="text" name="Email" id="user_id" size="25"/>
       
       <br/><br/>
       <label for="password">Password:</label>
       <br/>
-      <input size="25" name="password" id="password" type="password" autocomplete="off"/>
+      <input size="25" name="Pwd" id="password" type="password" autocomplete="off"/>
     <br/><br/> 
       <input type="submit" value="Login" name="login" class="submit button-1"/>
-   
-    
   </ul>
 </div>  
-</form>
+<s:token />
+</s:form>
 </div>
 </div>
 

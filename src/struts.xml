@@ -7,18 +7,16 @@
 	<!--
   <constant name="struts.objectFactory.cdi.jndiKey" value="java:comp/some/weird/BeanManagerReference" />
   -->
-	
+	 <constant name="struts.action.extension" value="jsp"/> 
+ 
 	<package name="default" namespace="/" extends="struts-default">
           <interceptors>
-	   <interceptor-stack name="waitStack">	 
-	    
+	   <interceptor-stack name="waitStack">	 	    
 	    <interceptor-ref name="token"/>
+	    
 	   <!-- <interceptor-ref name="basicStack"/>-->  
        <interceptor-ref name="defaultStack" />  
-       
-         
-       
-	   <interceptor-ref name="prepare"/>
+       <interceptor-ref name="prepare"/>
        <interceptor-ref name="params"/>
              <interceptor-ref name="validation">
                  <param name="excludeMethods">input,back,cancel,browse,validate</param>
@@ -28,10 +26,17 @@
        </interceptor-ref>
        </interceptor-stack>
         <interceptor name="CacheInterceptor"  class="ejb.interceptor.ClearCache"/>
+        <interceptor class="ejb.interceptor.LoginInterceptor" name="loginInterceptor"/>
+      
        <interceptor-stack name="myinterceptor">
+             
              <interceptor-ref name="defaultStack"/>
-             <interceptor-ref name="CacheInterceptor"/>
+             <interceptor-ref name="CacheInterceptor"/>           
        </interceptor-stack>
+       <interceptor-stack name="loginterceptor">
+             <interceptor-ref name="loginInterceptor" />
+       </interceptor-stack>
+       
        </interceptors>
         
      		
@@ -48,7 +53,31 @@
 		    <result name="success" >success.jsp</result> 
 		    <result name="input" >registration.jsp</result>
 		    <result name="invalid.token" type="redirect">registration.jsp</result> 
+		</action>
 		
+		<action name="login" method="login" class="action.Login" >	
+		 <!--     <interceptor-ref name="tokenSession"/> -->	    
+		   <!-- <interceptor-ref name="waitStack"/>-->	
+		     <interceptor-ref name="myinterceptor"/> 	      	   
+		    <result name="success" >welcome.jsp</result> 
+		    <result name="input" >login.jsp</result>
+		    <result name="invalid.token" type="redirect">login.jsp</result> 		
+        </action>
+        
+        <action name="next" method="next" class="action.Login" >	
+        	<interceptor-ref name="loginterceptor"/>       		  
+		     <interceptor-ref name="myinterceptor"/> 		     		           	   
+		    <result name="success" >failure.jsp</result> 
+		    <result name="input" >login.jsp</result>
+		    <result name="invalid.token" type="redirect">login.jsp</result>		
+        </action>
+        
+        <action name="logout" method="logout" class="action.Login" >		    
+		     <interceptor-ref name="loginterceptor"/> 	
+		     <interceptor-ref name="myinterceptor"/> 	      	   
+		    <result name="success" >login.jsp</result> 
+		    <result name="input" >login.jsp</result>
+		    <result name="invalid.token" type="redirect">login.jsp</result> 		
         </action>
         
         <action name="save" method="save" class="action.Registration" >
@@ -67,15 +96,14 @@
 		<result name="invalid.token" type="redirect">registration.jsp</result> 
 		</action>
 		        
-		        <action name="save2" method="save2" class="action.Registration" >
+	    <action name="save2" method="save2" class="action.Registration" >
         <interceptor-ref name="waitStack"/>
 		     <interceptor-ref name="defaultStack"/> 
 		     <interceptor-ref name="myinterceptor"/> 
 		     <result name="success">failure.jsp</result> 
 		    <result name="input" >registration.jsp</result>
 		<result name="invalid.token" type="redirect">registration.jsp</result> 
-		
-		        </action>
+		</action>
 		
 	</package>
 

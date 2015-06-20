@@ -23,7 +23,10 @@ public interface AccountDaoLocal {
 	public Account finddao(Object id);
 	
 	public List<?> finddaobyEmail(Object id);
+	
 
 	public void updatedao(Account a);
+	
+	
 
 }

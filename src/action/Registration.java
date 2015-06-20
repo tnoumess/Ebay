@@ -32,10 +32,7 @@ import ejb.Domain.User;
  * @Registration.java
  */
 public class Registration extends ActionSupport implements ModelDriven<Account> {
-	
-	/**
-	 * 
-	 */
+		
 	private static final long serialVersionUID = -8930461193700155653L;
 	private Account account;
 	private User user;
@@ -117,19 +114,20 @@ public class Registration extends ActionSupport implements ModelDriven<Account> 
     public  synchronized void  validate(){
 		System.out.println("in valid");
 		if(account.getEmail()==null||account.getEmail().trim().equals("")){
-			addFieldError("email","The Email is required");	
+			addFieldError("email","The Email is  required");	
 		}
         if(account.getPwd()==null||account.getPwd().trim().equals("")){
         	addFieldError("pwd","The password is required");	
 		}
         if(account.getEmail()!=null&& !account.getEmail().trim().equals("")){
+        	System.out.println(account.getEmail());
         	String  expression="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
             CharSequence inputStr = account.getEmail();
             Pattern pattern = Pattern.compile(expression,Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(inputStr);	               
             if(!matcher.matches())
               //  addFieldError("email","Invalid email address");
-         	   addFieldError("email2","Invalid email address");
+         	   addFieldError("email2","Invalid email address:"+account.getEmail());
             }
         System.out.println("in");
         if(account.getPwd()!=null&&!account.getPwd().trim().equals("")){

@@ -80,7 +80,7 @@ public class AccountServiceImpl implements AccountServiceLocal, Serializable {
 	@Override
 	public Account find(Object id) {
 		// TODO Auto-generated method stub
-		return null;
+		return adl.finddao(id);
 	}
 
 	/* (non-Javadoc)
