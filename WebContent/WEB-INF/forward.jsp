@@ -5,25 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
-<title>Welcome</title>
+<title>Forward</title>
 </head>
 <body>
-welcome
-<s:form action="next" method="post">
-<input type="submit" value="next">
-<s:token />
-</s:form> 
- 
- <s:form action="logout" method="post">
-<input type="submit" value="logout">
-<s:token />
-</s:form>
-
-<s:url action="Forward" var="forward">    
-</s:url>
-
-<s:a href="%{forward}">URL</s:a>
-
+Forward 
 </body>
 
 </html>

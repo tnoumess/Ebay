@@ -11,6 +11,7 @@
 success <br>
    Client Id:<s:property value="client.getId()" escapeJavaScript="true"/><br>
    Client Email:<s:property value="client.getEmail()" escapeJavaScript="true"/><br>
+   Client Pwd:<s:property value="client.getPwd()" escapeJavaScript="true"/><br>
      
 <a href="failure.jsp">link</a>
 <form action="save" method="post">
